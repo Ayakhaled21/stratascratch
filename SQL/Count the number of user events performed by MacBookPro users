@@ -1,0 +1,11 @@
+Count the number of user events performed by MacBookPro users.
+Output the result along with the event name.
+Sort the result based on the event count in the descending order.
+
+solution : 
+
+select event_name , count(event_name) as num_events 
+from playbook_events
+where device LIKE '%macbook pro%'
+group by event_name
+ORDER BY count(event_name)  DESC 
