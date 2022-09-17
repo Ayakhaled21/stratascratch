@@ -20,6 +20,17 @@ SELECT abs(marketing - engineering)
 from engineering_s , marketing_s
 
 
+Answer 2 : 
+
+SELECT abs(max(engineering_salary) - max(marketing_salary)) as salary_diff 
+from (
+SELECT 
+CASE WHEN d.department = 'engineering' then (e.salary) end as engineering_salary , 
+CASE WHEN d.department = 'marketing' then (e.salary) end as marketing_salary 
+FROM db_employee as e 
+INNER JOIN db_dept as d 
+ON e.department_id = d.id ) as tb 
+
 
 
 Recommended PostgreSQL Solution by StrataScratch >> 
