@@ -1,0 +1,26 @@
+Average Salaries 
+
+Compare each employee's salary with the average salary of the corresponding department.
+Output the department, first name, and salary of employees along with the average salary of that department. 
+
+
+Solution : 
+
+with cte as (SELECT e.department  as department , AVG(e.salary) as department_avg_salary
+FROM employee as e 
+GROUP BY e.department)
+SELECT emp.department , emp.first_name , emp.salary , department_avg_salary 
+FROM employee as emp 
+INNER JOIN cte 
+ON emp.department = cte.department
+
+
+
+
+Recommended PostgreSQL Solution by StrataScratch:
+SELECT 
+        department, 
+        first_name, 
+        salary, 
+        AVG(salary) over (PARTITION BY department) 
+FROM employee;
